@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Number Guess Game</title>
+    <link rel="stylesheet" href="style.css">
+    <audio id="bgMusic" src="background.mp3" loop autoplay></audio>
+
+</head>
+<body>
+<h1>Game Đoán Dãy 5 Số</h1>
+
+<div class="top-buttons">
+    <button id="showHelpBtn">Cách chơi</button>
+    <button id="hardModeBtn">Hard Mode</button>
+    <button id="toggleMusic">Bật/Tắt Nhạc</button>
+
+</div>
+
+<div class="game-container">
+    <div class="top-bar">
+        <div class="status">
+            Lần đoán còn lại: <span id="attempts">10</span>
+        </div>
+        <div class="mode-indicator">
+            Chế độ: <span id="modeLabel">Normal</span>
+        </div>
+    </div>
+
+    <div class="inputs-row">
+        <input type="text" maxlength="1" id="d0">
+        <input type="text" maxlength="1" id="d1">
+        <input type="text" maxlength="1" id="d2">
+        <input type="text" maxlength="1" id="d3">
+        <input type="text" maxlength="1" id="d4">
+    </div>
+
+    <div class="controls">
+        <button id="guessBtn">Đoán</button>
+        <button id="resetBtn">Chơi lại</button>
+    </div>
+
+    <div class="board" id="board">
+        <!-- Các hàng kết quả sẽ được thêm ở đây -->
+    </div>
+
+    <div class="message" id="message"></div>
+</div>
+
+<!-- Overlay hướng dẫn cách chơi -->
+<div class="overlay" id="instructionsOverlay">
+    <div class="instructions-box">
+        <h2>Cách chơi</h2>
+        <p>Mình sẽ tạo ngẫu nhiên một dãy <b>5 số</b> từ <b>0 đến 9</b>.</p>
+        <p>Nhiệm vụ của bạn là đoán đúng dãy số đó trong tối đa <b>10 lần đoán</b>.</p>
+        <p>Mỗi lần đoán, mỗi ô sẽ có màu (ở Normal Mode):</p>
+        <div class="color-example">
+            <div class="color-square color-green"></div>
+            <span><b>Xanh lá</b>: đúng số và đúng vị trí.</span>
+        </div><br>
+        <div class="color-example">
+            <div class="color-square color-red"></div>
+            <span><b>Đỏ</b>: đúng số nhưng sai vị trí.</span>
+        </div><br>
+        <div class="color-example">
+            <div class="color-square color-gray"></div>
+            <span><b>Xám</b>: số không có trong dãy bí mật.</span>
+        </div>
+        <p>Khi bật <b>Hard Mode</b>, sẽ <b>không còn ô màu đỏ</b>, chỉ có:</p>
+        <ul>
+            <li><b>Xanh lá</b>: đúng số đúng vị trí</li>
+            <li><b>Xám</b>: tất cả trường hợp còn lại</li>
+            <li><b>Thêm 1 dòng gợi ý</b> về <b>số ô đúng giá trị</b> nhưng <b>sai vị trí</b> mà không cho biết đó là ô nào</li>
+        </ul>
+        <p>Nhập 5 số vào các ô, bấm <b>Đoán</b> để kiểm tra kết quả.</p>
+        <div class="instructions-actions">
+            <button id="closeInstructionsBtn">Đã hiểu</button>
+        </div>
+    </div>
+</div>
+
+<!-- Overlay thông báo Hard Mode -->
+<div class="overlay hidden" id="hardModeOverlay">
+    <div class="instructions-box">
+        <h2>Hard Mode</h2>
+        <p>
+            Ở Hard Mode sẽ <b>không còn chỉ ra đúng giá trị nhưng sai vị trí</b>
+            (tức <b>không còn ô màu đỏ</b>).
+        </p>
+        <p>
+            Bạn chỉ thấy:
+        </p>
+        <ul>
+            <li><span class="color-square color-green"></span> Xanh lá: đúng số, đúng vị trí</li>
+            <li><span class="color-square color-gray"></span> Xám: còn lại</li>
+            <li><span></span>Hiện số ô <b>đúng giá trị</b> mà <b>sai vị trí</b></li>
+        </ul>
+        <div class="instructions-actions">
+            <button id="closeHardModeOverlayBtn">Đã hiểu</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
