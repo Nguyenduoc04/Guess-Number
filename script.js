@@ -25,10 +25,18 @@ bgMusic.volume = 0.2;
 bgMusic.play();
 
 const toggleMusicBtn = document.getElementById("toggleMusic");
+// Xử lý nút bật/tắt nhạc
 toggleMusicBtn.addEventListener("click", () => {
-    bgMusic.paused ? bgMusic.play() : bgMusic.pause();
+    if (bgMusic.paused) {
+        // Nếu nhạc đang tắt, bật nhạc và thay đổi văn bản nút
+        bgMusic.play();
+        toggleMusicBtn.textContent = "Tắt Nhạc";  // Đổi nút thành "Tắt Nhạc"
+    } else {
+        // Nếu nhạc đang bật, tắt nhạc và thay đổi văn bản nút
+        bgMusic.pause();
+        toggleMusicBtn.textContent = "Bật Nhạc";  // Đổi nút thành "Bật Nhạc"
+    }
 });
-
 // ===== Logic game =====
 function generateSecret() {
     secret = [];
@@ -184,12 +192,14 @@ hardModeBtn.addEventListener("click", () => {
         // Normal -> Hard
         hardMode = true;
         modeLabelEl.textContent = "Hard";
+        hardModeBtn.textContent = "Normal Mode";
         resetGame();
         overlayHardMode.classList.remove("hidden");
     } else {
         // Hard -> Normal
         hardMode = false;
         modeLabelEl.textContent = "Normal";
+        hardModeBtn.textContent = "Hard Mode";
         resetGame();
         overlayHardMode.classList.add("hidden");
     }
